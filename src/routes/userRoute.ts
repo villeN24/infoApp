@@ -21,5 +21,22 @@ router.get(`/`, async (req, res) => {
     });
   }
 });
+router.get(`/:id([0-9]+)`, async (req, res) => {
+  const id = Number(req.params.id);
+  try {
+    const foundLocation = await connectionFunctions.findById(id);
+    if (foundLocation !== null) {
+      res.status(200).send(foundLocation);
+    } else {
+      res.status(404).send({
+        msg: "Cannot find resource with ID of " + req.params.id + ".",
+      });
+    }
+  } catch (err) {
+    res.status(500).send({
+      msg: unexpectedErr,
+    });
+  }
+});
 
 export default router;

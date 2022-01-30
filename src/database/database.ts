@@ -46,4 +46,22 @@ export const connectionFunctions = {
     }
     return new Promise(funkkari);
   },
+  findById: (id: number) => {
+    function funkkari(resolve, reject) {
+      pool.query(
+        `SELECT * FROM users WHERE id = ?`,
+        [id],
+        (err, foundLocation) => {
+          if (err) {
+            reject(err);
+          } else if (foundLocation.length < 1) {
+            resolve(null);
+          } else {
+            resolve(foundLocation);
+          }
+        }
+      );
+    }
+    return new Promise(funkkari);
+  },
 };
