@@ -92,4 +92,20 @@ export const connectionFunctions = {
     }
     return new Promise(funkkari);
   },
+  editEntry: (id: number, fName: string, lName: string, age: number) => {
+    function funkkari(resolve, reject) {
+      pool.query(
+        `UPDATE users SET fName = ?, lName = ?, age = ? WHERE id = ?;`,
+        [fName, lName, age, id],
+        (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve("Entry succesfully edited.");
+          }
+        }
+      );
+    }
+    return new Promise(funkkari);
+  },
 };
