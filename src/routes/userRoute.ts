@@ -11,9 +11,8 @@ import { connectionFunctions } from "../database/database";
  * everything from a database, and returns them.
  */
 router.get(`/`, async (req, res) => {
-  let allLocations;
   try {
-    allLocations = await connectionFunctions.findAll();
+    const allLocations = await connectionFunctions.findAll();
     res.status(200).send(allLocations);
   } catch {
     res.status(500).send({
