@@ -64,4 +64,16 @@ export const connectionFunctions = {
     }
     return new Promise(funkkari);
   },
+  deleteById: (id: number) => {
+    function funkkari(resolve, reject) {
+      pool.query(`DELETE FROM users WHERE id = ?`, [id], (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(id);
+        }
+      });
+    }
+    return new Promise(funkkari);
+  },
 };
