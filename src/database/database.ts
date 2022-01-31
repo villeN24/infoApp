@@ -76,4 +76,20 @@ export const connectionFunctions = {
     }
     return new Promise(funkkari);
   },
+  save: (fName: string, lName: string, age: number) => {
+    function funkkari(resolve, reject) {
+      pool.query(
+        `INSERT INTO users (fName, lName, age) Values(?, ?, ?)`,
+        [fName, lName, age],
+        (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve("Entry succesfully added.");
+          }
+        }
+      );
+    }
+    return new Promise(funkkari);
+  },
 };

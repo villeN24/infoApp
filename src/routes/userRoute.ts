@@ -2,6 +2,7 @@ import { Router } from "express";
 //const router = express.Router();
 const router: Router = Router();
 const unexpectedErr = `Serverside error occured.`;
+const badReqErr = `Invalid request.`;
 import { connectionFunctions } from "../database/database";
 
 /**
@@ -55,6 +56,17 @@ router.delete(`/:id([0-9]+)`, async (req, res) => {
   } catch (err) {
     res.status(500).send({
       msg: unexpectedErr,
+    });
+  }
+});
+router.post(`/`, async (req, res) => {
+  const age = Number(req.body.age);
+  try {
+    connectionFunctions.save(req.body.fName, req.body.lName, age);
+    res.status(201).send();
+  } catch (err) {
+    res.status(500).send({
+      msg: badReqErr,
     });
   }
 });
