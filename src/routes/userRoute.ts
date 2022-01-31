@@ -6,9 +6,6 @@ import { connectionFunctions } from "../database/database";
 
 /**
  * Router function to get all from table.
- *
- * Directs http get query from it´s url to fetch
- * everything from a database, and returns them.
  */
 router.get(`/`, async (req, res) => {
   try {
@@ -20,6 +17,9 @@ router.get(`/`, async (req, res) => {
     });
   }
 });
+/**
+ * Router function to get one item with given id from table.
+ */
 router.get(`/:id([0-9]+)`, async (req, res) => {
   const id = Number(req.params.id);
   try {
@@ -37,6 +37,9 @@ router.get(`/:id([0-9]+)`, async (req, res) => {
     });
   }
 });
+/**
+ * Router function to delete item with given id from table.
+ */
 router.delete(`/:id([0-9]+)`, async (req, res) => {
   const id = Number(req.params.id);
   try {
