@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { FC, useEffect, useState } from "react";
 import "../App.css";
 
@@ -9,13 +10,26 @@ interface userProps {
 }
 
 const UserRow: FC<userProps> = ({ id, fName, lName, age }) => {
+  const [visible, setVisible] = useState(true);
+
+  const handleDelete = async () => {
+    console.log(`Delete user with ID: ${id}`);
+    let response = await axios.delete(`http://localhost:8080/users/${id}`);
+    console.log(response);
+    setVisible(false);
+  };
   return (
-    <tr>
-      <td>{id} </td>
-      <td>{fName}</td>
-      <td>{lName}</td>
-      <td>{age}</td>
-    </tr>
+    <div>
+      {visible ? (
+        <tr>
+          <td>{id} </td>
+          <td>{fName}</td>
+          <td>{lName}</td>
+          <td>{age}</td>
+          <button onClick={() => handleDelete()}>Delete user</button>
+        </tr>
+      ) : null}
+    </div>
   );
 };
 
