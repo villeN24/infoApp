@@ -8,15 +8,13 @@ interface IInfo {
   lName: string;
   age: number;
 }
-const defaultList: IInfo[] = [];
 
 function Table() {
-  const [list, setList]: [IInfo[], (lists: IInfo[]) => void] =
-    useState(defaultList);
+  const [list, setList] = useState<IInfo[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      let response = await axios.get<IInfo[]>(`http://localhost:8080/users`);
+      let response = await axios.get(`http://localhost:8080/users`);
       setList(response.data);
     };
     fetchData();
