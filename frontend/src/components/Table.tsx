@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import axios from "axios";
+import UserRow from "./UserRow";
 
 interface IInfo {
   id: number;
@@ -29,12 +30,7 @@ function Table() {
           <th>age</th>
         </tr>
         {list.map((id) => (
-          <tr>
-            <td>{id.id} </td>
-            <td>{id.fName}</td>
-            <td>{id.lName}</td>
-            <td>{id.age}</td>
-          </tr>
+          <UserRow id={id.id} fName={id.fName} lName={id.lName} age={id.age} />
         ))}
       </table>
     </div>
