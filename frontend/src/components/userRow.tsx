@@ -7,29 +7,25 @@ interface userProps {
   fName: string;
   lName: string;
   age: number;
+  refreshList: Function;
 }
 
-const UserRow: FC<userProps> = ({ id, fName, lName, age }) => {
-  const [visible, setVisible] = useState(true);
-
+const UserRow: FC<userProps> = ({ id, fName, lName, age, refreshList }) => {
   const handleDelete = async () => {
     console.log(`Delete user with ID: ${id}`);
-    let response = await axios.delete(`http://localhost:8080/users/${id}`);
-    console.log(response);
-    setVisible(false);
+    await axios.delete(`http://localhost:8080/users/${id}`);
+    refreshList();
   };
   return (
-    <div>
-      {visible ? (
-        <tr>
-          <td>{id} </td>
-          <td>{fName}</td>
-          <td>{lName}</td>
-          <td>{age}</td>
-          <button onClick={() => handleDelete()}>Delete user</button>
-        </tr>
-      ) : null}
-    </div>
+    <tr>
+      <td>{id} </td>
+      <td>{fName}</td>
+      <td>{lName}</td>
+      <td>{age}</td>
+      <td>
+        <button onClick={() => handleDelete()}>Delete user</button>
+      </td>
+    </tr>
   );
 };
 

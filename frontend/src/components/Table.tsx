@@ -12,6 +12,14 @@ interface IInfo {
 
 function Table() {
   const [list, setList] = useState<IInfo[]>([]);
+  const [refresh, setRefresh] = useState<boolean>(false);
+
+  /**
+   * Refreshes the rendered list when something is changed from child.
+   */
+  const refreshList = () => {
+    setRefresh(!refresh);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +27,7 @@ function Table() {
       setList(response.data);
     };
     fetchData();
-  }, []);
+  }, [refresh]);
   return (
     <div>
       <table>
@@ -28,9 +36,16 @@ function Table() {
           <th>First name</th>
           <th>Last name</th>
           <th>age</th>
+          <th>Delete</th>
         </tr>
         {list.map((id) => (
-          <UserRow id={id.id} fName={id.fName} lName={id.lName} age={id.age} />
+          <UserRow
+            id={id.id}
+            fName={id.fName}
+            lName={id.lName}
+            age={id.age}
+            refreshList={refreshList}
+          />
         ))}
       </table>
     </div>
