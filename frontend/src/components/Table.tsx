@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../App.css";
 import axios from "axios";
 import UserRow from "./UserRow";
+import Insert from "./Insert";
 
 interface IInfo {
   id: number;
@@ -48,6 +49,7 @@ function Table() {
           />
         ))}
       </table>
+      <Insert />
     </div>
   );
 }
