@@ -8,7 +8,9 @@
     "jsx": "react",
     "sourceMap": true,
     "allowJs": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "types": [],
+    "skipLibCheck": true
   },
   "lib": ["es2015"]
 }
