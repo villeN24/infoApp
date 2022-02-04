@@ -5,6 +5,11 @@ const unexpectedErr = `Serverside error occured.`;
 const badReqErr = `Invalid request.`;
 import { connectionFunctions } from "../database/database";
 
+router.use((req, res, next) => {
+  console.log(`Logged at route`);
+  next();
+});
+
 /**
  * Router function to get all from table.
  */
@@ -60,9 +65,12 @@ router.delete(`/:id([0-9]+)`, async (req, res) => {
   }
 });
 router.post(`/`, async (req, res) => {
-  const age = Number(req.body.age);
   try {
-    connectionFunctions.save(req.body.fName, req.body.lName, age);
+    await connectionFunctions.save(
+      req.body.payload.fName,
+      req.body.payload.lName,
+      req.body.payload.age
+    );
     res.status(201).send();
   } catch (err) {
     res.status(500).send({

@@ -79,7 +79,7 @@ export const connectionFunctions = {
   save: (fName: string, lName: string, age: number) => {
     function funkkari(resolve, reject) {
       pool.query(
-        `INSERT INTO users (fName, lName, age) Values(?, ?, ?)`,
+        `INSERT INTO users (fName, lName, age) VALUES (?, ?, ?)`,
         [fName, lName, age],
         (err) => {
           if (err) {
