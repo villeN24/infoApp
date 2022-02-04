@@ -54,7 +54,7 @@ const Insert: FC<insertProps> = ({ refreshList }) => {
         id="lname"
         placeholder="Last name"
       />
-      <input onChange={handleChange} type="text" id="age" placeholder="Age" />
+      <input onChange={handleChange} type="number" id="age" placeholder="Age" />
       <button onClick={() => insertInfo()}>Submit</button>
     </div>
   );
