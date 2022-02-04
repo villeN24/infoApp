@@ -37,7 +37,6 @@ function Table() {
           <th>First name</th>
           <th>Last name</th>
           <th>age</th>
-          <th>Delete</th>
         </tr>
         {list.map((id) => (
           <UserRow

@@ -80,11 +80,15 @@ router.post(`/`, async (req, res) => {
 });
 router.patch(`/:id([0-9]+)`, async (req, res) => {
   const id = Number(req.params.id);
-  const age = Number(req.body.age);
   try {
     const foundLocation = await connectionFunctions.findById(id);
     if (foundLocation != null) {
-      connectionFunctions.editEntry(id, req.body.fName, req.body.lName, age);
+      connectionFunctions.editEntry(
+        id,
+        req.body.payload.fName,
+        req.body.payload.lName,
+        req.body.payload.age
+      );
       res.status(200).send();
     } else {
       res.status(404).send({
