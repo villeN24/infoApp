@@ -49,7 +49,7 @@ function Table() {
           />
         ))}
       </table>
-      <Insert />
+      <Insert refreshList={refreshList} />
     </div>
   );
 }

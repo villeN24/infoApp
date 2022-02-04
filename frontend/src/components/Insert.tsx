@@ -8,8 +8,11 @@ interface user {
   lName: String;
   age: number;
 }
+interface insertProps {
+  refreshList: Function;
+}
 
-const Insert = () => {
+const Insert: FC<insertProps> = ({ refreshList }) => {
   const [firstName, setFirstName] = useState<String>("");
   const [lastName, setLastName] = useState<String>("");
   const [age, setAge] = useState<number>(0);
@@ -31,11 +34,10 @@ const Insert = () => {
       lName: lastName,
       age: age,
     };
-    console.log(dataPacket);
-    let res = await axios.post(`http://localhost:8080/users`, {
+    await axios.post(`http://localhost:8080/users`, {
       payload: dataPacket,
     });
-    console.log(res);
+    refreshList();
   };
 
   return (
