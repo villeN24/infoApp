@@ -17,6 +17,9 @@ function Table() {
   const [helper, setHelper] = useState<boolean>(true);
   const [sort, setSort] = useState<boolean>(false);
   const [ageFlip, setAgeFlip] = useState<boolean>();
+  const [idFlip, setIdFlip] = useState<boolean>();
+  const [fNameFlip, setFNameFlip] = useState<boolean>();
+  const [lNameFlip, setLNameFlip] = useState<boolean>();
 
   /**
    * Refreshes the rendered list when something is changed from child.
@@ -38,7 +41,17 @@ function Table() {
 
   const sortByID = () => {
     let tmp = list;
-    tmp.reverse();
+    console.log(tmp);
+    if (idFlip !== true) {
+      tmp.sort((a, b) => {
+        return a.id - b.id;
+      });
+    } else {
+      tmp.sort((a, b) => {
+        return b.id - a.id;
+      });
+    }
+    setIdFlip(!idFlip);
     setList(tmp);
     setSort(!sort);
   };
