@@ -18,8 +18,7 @@ function Table() {
   const [sort, setSort] = useState<boolean>(false);
   const [ageFlip, setAgeFlip] = useState<boolean>();
   const [idFlip, setIdFlip] = useState<boolean>();
-  const [fNameFlip, setFNameFlip] = useState<boolean>();
-  const [lNameFlip, setLNameFlip] = useState<boolean>();
+  const [nameFlip, setNameFlip] = useState<boolean>();
 
   /**
    * Refreshes the rendered list when something is changed from child.
@@ -70,12 +69,19 @@ function Table() {
     setList(tmp);
     setSort(!sort);
   };
-  const sortByFName = () => {
+  const sortByName = (firstName: boolean) => {
     let tmp = list;
-    if (fNameFlip !== true) {
+    if (nameFlip !== true) {
       tmp.sort((a, b) => {
-        let fa = a.fName.toLowerCase();
-        let fb = b.fName.toLowerCase();
+        let fa: string;
+        let fb: string;
+        if (firstName === true) {
+          fa = a.fName.toLowerCase();
+          fb = b.fName.toLowerCase();
+        } else {
+          fa = a.lName.toLowerCase();
+          fb = b.lName.toLowerCase();
+        }
         if (fa < fb) {
           return -1;
         }
@@ -86,8 +92,15 @@ function Table() {
       });
     } else {
       tmp.sort((a, b) => {
-        let fb = a.fName.toLowerCase();
-        let fa = b.fName.toLowerCase();
+        let fa: string;
+        let fb: string;
+        if (firstName === true) {
+          fa = b.fName.toLowerCase();
+          fb = a.fName.toLowerCase();
+        } else {
+          fa = b.lName.toLowerCase();
+          fb = a.lName.toLowerCase();
+        }
         if (fa < fb) {
           return -1;
         }
@@ -97,7 +110,7 @@ function Table() {
         return 0;
       });
     }
-    setFNameFlip(!fNameFlip);
+    setNameFlip(!nameFlip);
     setList(tmp);
     setSort(!sort);
   };
@@ -108,8 +121,8 @@ function Table() {
           <tbody>
             <tr>
               <th onClick={() => sortByID()}>ID</th>
-              <th onClick={() => sortByFName()}>First name</th>
-              <th>Last name</th>
+              <th onClick={() => sortByName(true)}>First name</th>
+              <th onClick={() => sortByName(false)}>Last name</th>
               <th onClick={() => sortByAge()}>age</th>
               <th>Functionality</th>
             </tr>
