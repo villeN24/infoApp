@@ -14,6 +14,8 @@ interface IInfo {
 function Table() {
   const [list, setList] = useState<IInfo[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
+  const [helper, setHelper] = useState<boolean>(true);
+  const [sortID, setSortID] = useState<boolean>(false);
 
   /**
    * Refreshes the rendered list when something is changed from child.
@@ -24,18 +26,28 @@ function Table() {
 
   useEffect(() => {
     const fetchData = async () => {
-      let response = await axios.get(`http://localhost:8080/users`);
-      setList(response.data);
+      if (refresh !== helper) {
+        let response = await axios.get(`http://localhost:8080/users`);
+        setList(response.data);
+        setHelper(refresh);
+      }
     };
     fetchData();
-  }, [refresh]);
+  }, [refresh, sortID]);
+
+  const sortByID = () => {
+    let tmp = list;
+    tmp.reverse();
+    setList(tmp);
+    setSortID(!sortID);
+  };
   return (
     <div id="container">
       <div id="table">
         <table>
           <tbody>
             <tr>
-              <th>ID</th>
+              <th onClick={() => sortByID()}>ID</th>
               <th>First name</th>
               <th>Last name</th>
               <th>age</th>
