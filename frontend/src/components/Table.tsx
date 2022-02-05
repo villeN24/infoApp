@@ -15,7 +15,8 @@ function Table() {
   const [list, setList] = useState<IInfo[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
   const [helper, setHelper] = useState<boolean>(true);
-  const [sortID, setSortID] = useState<boolean>(false);
+  const [sort, setSort] = useState<boolean>(false);
+  const [ageFlip, setAgeFlip] = useState<boolean>();
 
   /**
    * Refreshes the rendered list when something is changed from child.
@@ -33,13 +34,28 @@ function Table() {
       }
     };
     fetchData();
-  }, [refresh, sortID]);
+  }, [refresh, sort]);
 
   const sortByID = () => {
     let tmp = list;
     tmp.reverse();
     setList(tmp);
-    setSortID(!sortID);
+    setSort(!sort);
+  };
+  const sortByAge = () => {
+    let tmp = list;
+    if (ageFlip !== true) {
+      tmp.sort((a, b) => {
+        return a.age - b.age;
+      });
+    } else {
+      tmp.sort((a, b) => {
+        return b.age - a.age;
+      });
+    }
+    setAgeFlip(!ageFlip);
+    setList(tmp);
+    setSort(!sort);
   };
   return (
     <div id="container">
@@ -50,7 +66,7 @@ function Table() {
               <th onClick={() => sortByID()}>ID</th>
               <th>First name</th>
               <th>Last name</th>
-              <th>age</th>
+              <th onClick={() => sortByAge()}>age</th>
               <th>Functionality</th>
             </tr>
             {list.map((id) => (
