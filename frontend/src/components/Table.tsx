@@ -41,6 +41,7 @@ function Table() {
           </tr>
           {list.map((id) => (
             <UserRow
+              key={id.id}
               id={id.id}
               fName={id.fName}
               lName={id.lName}
