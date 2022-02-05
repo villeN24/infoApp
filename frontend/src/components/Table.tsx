@@ -70,6 +70,37 @@ function Table() {
     setList(tmp);
     setSort(!sort);
   };
+  const sortByFName = () => {
+    let tmp = list;
+    if (fNameFlip !== true) {
+      tmp.sort((a, b) => {
+        let fa = a.fName.toLowerCase();
+        let fb = b.fName.toLowerCase();
+        if (fa < fb) {
+          return -1;
+        }
+        if (fa > fb) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      tmp.sort((a, b) => {
+        let fb = a.fName.toLowerCase();
+        let fa = b.fName.toLowerCase();
+        if (fa < fb) {
+          return -1;
+        }
+        if (fa > fb) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+    setFNameFlip(!fNameFlip);
+    setList(tmp);
+    setSort(!sort);
+  };
   return (
     <div id="container">
       <div id="table">
@@ -77,7 +108,7 @@ function Table() {
           <tbody>
             <tr>
               <th onClick={() => sortByID()}>ID</th>
-              <th>First name</th>
+              <th onClick={() => sortByFName()}>First name</th>
               <th>Last name</th>
               <th onClick={() => sortByAge()}>age</th>
               <th>Functionality</th>
