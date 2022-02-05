@@ -33,22 +33,25 @@ function Table() {
     <div id="container">
       <div id="table">
         <table>
-          <tr>
-            <th>ID</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>age</th>
-          </tr>
-          {list.map((id) => (
-            <UserRow
-              key={id.id}
-              id={id.id}
-              fName={id.fName}
-              lName={id.lName}
-              age={id.age}
-              refreshList={refreshList}
-            />
-          ))}
+          <tbody>
+            <tr>
+              <th>ID</th>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>age</th>
+              <th>Functionality</th>
+            </tr>
+            {list.map((id) => (
+              <UserRow
+                key={id.id}
+                id={id.id}
+                fName={id.fName}
+                lName={id.lName}
+                age={id.age}
+                refreshList={refreshList}
+              />
+            ))}
+          </tbody>
         </table>
         <div id="insert">
           <Insert refreshList={refreshList} />
