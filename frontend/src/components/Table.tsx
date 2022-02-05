@@ -30,25 +30,29 @@ function Table() {
     fetchData();
   }, [refresh]);
   return (
-    <div>
-      <table>
-        <tr>
-          <th>id</th>
-          <th>First name</th>
-          <th>Last name</th>
-          <th>age</th>
-        </tr>
-        {list.map((id) => (
-          <UserRow
-            id={id.id}
-            fName={id.fName}
-            lName={id.lName}
-            age={id.age}
-            refreshList={refreshList}
-          />
-        ))}
-      </table>
-      <Insert refreshList={refreshList} />
+    <div id="container">
+      <div id="table">
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>age</th>
+          </tr>
+          {list.map((id) => (
+            <UserRow
+              id={id.id}
+              fName={id.fName}
+              lName={id.lName}
+              age={id.age}
+              refreshList={refreshList}
+            />
+          ))}
+        </table>
+        <div id="insert">
+          <Insert refreshList={refreshList} />
+        </div>
+      </div>
     </div>
   );
 }
