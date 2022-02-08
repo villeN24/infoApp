@@ -4,6 +4,9 @@ import axios from "axios";
 import UserRow from "./UserRow";
 import Insert from "./Insert";
 
+const topColor: string = "#36304a";
+const hlColor: string = "lightgray";
+
 interface IInfo {
   id: number;
   fName: string;
@@ -25,19 +28,19 @@ function Table() {
   const [fNameFlip, setFNameFlip] = useState<boolean>();
   const [lNameFlip, setLNameFlip] = useState<boolean>();
   const [idStyle, setIdStyle] = useState<Style>({
-    backgroundColor: "#96d4d4",
+    backgroundColor: topColor,
     icon: null,
   });
   const [fNameStyle, setFNameStyle] = useState<Style>({
-    backgroundColor: "#96d4d4",
+    backgroundColor: topColor,
     icon: null,
   });
   const [lNameStyle, setLNameStyle] = useState<Style>({
-    backgroundColor: "#96d4d4",
+    backgroundColor: topColor,
     icon: null,
   });
   const [ageStyle, setAgeStyle] = useState<Style>({
-    backgroundColor: "#96d4d4",
+    backgroundColor: topColor,
     icon: null,
   });
 
@@ -62,12 +65,12 @@ function Table() {
   const sortByID = () => {
     let tmp = list;
     if (idFlip !== true) {
-      setIdStyle({ backgroundColor: "lightgray", icon: "\u23F6" });
+      setIdStyle({ backgroundColor: hlColor, icon: "\u23F6" });
       tmp.sort((a, b) => {
         return a.id - b.id;
       });
     } else {
-      setIdStyle({ backgroundColor: "lightgray", icon: "\u23F7" });
+      setIdStyle({ backgroundColor: hlColor, icon: "\u23F7" });
       tmp.sort((a, b) => {
         return b.id - a.id;
       });
@@ -76,19 +79,19 @@ function Table() {
     setList(tmp);
     setSort(!sort);
     setAgeFlip(false);
-    setFNameStyle({ backgroundColor: "#96d4d4", icon: null });
-    setLNameStyle({ backgroundColor: "#96d4d4", icon: null });
-    setAgeStyle({ backgroundColor: "#96d4d4", icon: null });
+    setFNameStyle({ backgroundColor: topColor, icon: null });
+    setLNameStyle({ backgroundColor: topColor, icon: null });
+    setAgeStyle({ backgroundColor: topColor, icon: null });
   };
   const sortByAge = () => {
     let tmp = list;
     if (ageFlip !== true) {
-      setAgeStyle({ backgroundColor: "lightgray", icon: "\u23F6" });
+      setAgeStyle({ backgroundColor: hlColor, icon: "\u23F6" });
       tmp.sort((a, b) => {
         return a.age - b.age;
       });
     } else {
-      setAgeStyle({ backgroundColor: "lightgray", icon: "\u23F7" });
+      setAgeStyle({ backgroundColor: hlColor, icon: "\u23F7" });
       tmp.sort((a, b) => {
         return b.age - a.age;
       });
@@ -97,9 +100,9 @@ function Table() {
     setList(tmp);
     setSort(!sort);
     setIdFlip(false);
-    setFNameStyle({ backgroundColor: "#96d4d4", icon: null });
-    setLNameStyle({ backgroundColor: "#96d4d4", icon: null });
-    setIdStyle({ backgroundColor: "#96d4d4", icon: null });
+    setFNameStyle({ backgroundColor: topColor, icon: null });
+    setLNameStyle({ backgroundColor: topColor, icon: null });
+    setIdStyle({ backgroundColor: topColor, icon: null });
   };
   const sortByName = (firstName: boolean) => {
     let tmp = list;
@@ -108,11 +111,11 @@ function Table() {
         let fa;
         let fb;
         if (fNameFlip !== true) {
-          setFNameStyle({ backgroundColor: "lightgray", icon: "\u23F6" });
+          setFNameStyle({ backgroundColor: hlColor, icon: "\u23F6" });
           fa = a.fName.toLowerCase();
           fb = b.fName.toLowerCase();
         } else {
-          setFNameStyle({ backgroundColor: "lightgray", icon: "\u23F7" });
+          setFNameStyle({ backgroundColor: hlColor, icon: "\u23F7" });
           fa = b.fName.toLowerCase();
           fb = a.fName.toLowerCase();
         }
@@ -124,7 +127,7 @@ function Table() {
         }
         return 0;
       });
-      setLNameStyle({ backgroundColor: "#96d4d4", icon: null });
+      setLNameStyle({ backgroundColor: topColor, icon: null });
       setLNameFlip(false);
       setFNameFlip(!fNameFlip);
     }
@@ -133,11 +136,11 @@ function Table() {
         let fa;
         let fb;
         if (lNameFlip !== true) {
-          setLNameStyle({ backgroundColor: "lightgray", icon: "\u23F6" });
+          setLNameStyle({ backgroundColor: hlColor, icon: "\u23F6" });
           fa = a.lName.toLowerCase();
           fb = b.lName.toLowerCase();
         } else {
-          setLNameStyle({ backgroundColor: "lightgray", icon: "\u23F7" });
+          setLNameStyle({ backgroundColor: hlColor, icon: "\u23F7" });
           fa = b.lName.toLowerCase();
           fb = a.lName.toLowerCase();
         }
@@ -149,7 +152,7 @@ function Table() {
         }
         return 0;
       });
-      setFNameStyle({ backgroundColor: "#96d4d4", icon: null });
+      setFNameStyle({ backgroundColor: topColor, icon: null });
       setFNameFlip(false);
       setLNameFlip(!lNameFlip);
     }
@@ -157,8 +160,8 @@ function Table() {
     setSort(!sort);
     setAgeFlip(false);
     setIdFlip(false);
-    setIdStyle({ backgroundColor: "#96d4d4", icon: null });
-    setAgeStyle({ backgroundColor: "#96d4d4", icon: null });
+    setIdStyle({ backgroundColor: topColor, icon: null });
+    setAgeStyle({ backgroundColor: topColor, icon: null });
   };
   return (
     <div id="container">
@@ -166,7 +169,7 @@ function Table() {
         <table>
           <tbody>
             <tr>
-              <th style={idStyle} onClick={() => sortByID()}>
+              <th id="left" style={idStyle} onClick={() => sortByID()}>
                 ID {idStyle.icon}
               </th>
               <th style={fNameStyle} onClick={() => sortByName(true)}>
@@ -178,7 +181,7 @@ function Table() {
               <th style={ageStyle} onClick={() => sortByAge()}>
                 age {ageStyle.icon}
               </th>
-              <th>Functionality</th>
+              <th id="right">Functionality</th>
             </tr>
             {list.map((id) => (
               <UserRow

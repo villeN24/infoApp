@@ -1,12 +1,29 @@
 table,
 th,
 td {
-  border: 1px solid white;
+  margin-top: 10px;
+  font-size: 20px;
+  padding: 10px;
   border-collapse: collapse;
+}
+table {
+}
+th {
+  color: white;
+  background-color: #36304a;
+}
+td {
+  background-color: whitesmoke;
+  border-bottom: white solid 2px;
+}
+#left {
+  border-top-left-radius: 7px;
+}
+#right {
+  border-top-right-radius: 7px;
 }
 th,
 td {
-  background-color: #96d4d4;
   width: 160px;
   text-align: center;
 }
