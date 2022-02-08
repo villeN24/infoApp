@@ -6,8 +6,6 @@ td {
   padding: 10px;
   border-collapse: collapse;
 }
-table {
-}
 th {
   color: white;
   background-color: #36304a;
@@ -36,4 +34,17 @@ td {
 #insert {
   margin: auto;
   text-align: center;
+}
+button {
+  border-radius: 4px;
+  margin: 5px;
+  border: black solid 2px;
+  background-color: whitesmoke;
+  padding: 4px;
+}
+button:hover {
+  background-color: lightgray;
+}
+button:active {
+  background-color: gray;
 }

@@ -5,7 +5,7 @@ import UserRow from "./UserRow";
 import Insert from "./Insert";
 
 const topColor: string = "#36304a";
-const hlColor: string = "lightgray";
+const hlColor: string = "gray";
 
 interface IInfo {
   id: number;
