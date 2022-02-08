@@ -18,7 +18,8 @@ function Table() {
   const [sort, setSort] = useState<boolean>(false);
   const [ageFlip, setAgeFlip] = useState<boolean>();
   const [idFlip, setIdFlip] = useState<boolean>();
-  const [nameFlip, setNameFlip] = useState<boolean>();
+  const [lNameFlip, setLNameFlip] = useState<boolean>();
+  const [fNameFlip, setFNameFlip] = useState<boolean>();
 
   /**
    * Refreshes the rendered list when something is changed from child.
@@ -40,7 +41,6 @@ function Table() {
 
   const sortByID = () => {
     let tmp = list;
-    console.log(tmp);
     if (idFlip !== true) {
       tmp.sort((a, b) => {
         return a.id - b.id;
@@ -53,6 +53,7 @@ function Table() {
     setIdFlip(!idFlip);
     setList(tmp);
     setSort(!sort);
+    setAgeFlip(false);
   };
   const sortByAge = () => {
     let tmp = list;
@@ -68,19 +69,20 @@ function Table() {
     setAgeFlip(!ageFlip);
     setList(tmp);
     setSort(!sort);
+    setIdFlip(false);
   };
   const sortByName = (firstName: boolean) => {
     let tmp = list;
-    if (nameFlip !== true) {
+    if (firstName === true) {
       tmp.sort((a, b) => {
-        let fa: string;
-        let fb: string;
-        if (firstName === true) {
+        let fa;
+        let fb;
+        if (fNameFlip !== true) {
           fa = a.fName.toLowerCase();
           fb = b.fName.toLowerCase();
         } else {
-          fa = a.lName.toLowerCase();
-          fb = b.lName.toLowerCase();
+          fa = b.fName.toLowerCase();
+          fb = a.fName.toLowerCase();
         }
         if (fa < fb) {
           return -1;
@@ -90,13 +92,16 @@ function Table() {
         }
         return 0;
       });
-    } else {
+      setLNameFlip(false);
+      setFNameFlip(!fNameFlip);
+    }
+    if (firstName === false) {
       tmp.sort((a, b) => {
-        let fa: string;
-        let fb: string;
-        if (firstName === true) {
-          fa = b.fName.toLowerCase();
-          fb = a.fName.toLowerCase();
+        let fa;
+        let fb;
+        if (lNameFlip !== true) {
+          fa = a.lName.toLowerCase();
+          fb = b.lName.toLowerCase();
         } else {
           fa = b.lName.toLowerCase();
           fb = a.lName.toLowerCase();
@@ -109,10 +114,14 @@ function Table() {
         }
         return 0;
       });
+
+      setFNameFlip(false);
+      setLNameFlip(!lNameFlip);
     }
-    setNameFlip(!nameFlip);
     setList(tmp);
     setSort(!sort);
+    setAgeFlip(false);
+    setIdFlip(false);
   };
   return (
     <div id="container">
