@@ -181,7 +181,7 @@ function Table() {
               <th style={ageStyle} onClick={() => sortByAge()}>
                 age {ageStyle.icon}
               </th>
-              <th id="right">Functionality</th>
+              <th id="right"></th>
             </tr>
             {list.map((id) => (
               <UserRow

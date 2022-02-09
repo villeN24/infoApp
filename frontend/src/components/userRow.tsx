@@ -95,12 +95,16 @@ const UserRow: FC<userProps> = ({ id, fName, lName, age, refreshList }) => {
       )}
       {edit ? (
         <td>
-          <button onClick={() => handleDelete()}>Delete user</button>
+          <button className="top" onClick={() => handleDelete()}>
+            Delete user
+          </button>
           <button onClick={() => handleEdit()}>Edit user</button>
         </td>
       ) : (
         <td>
-          <button onClick={() => insertInfo()}>Submit user</button>
+          <button className="top" onClick={() => insertInfo()}>
+            Submit user
+          </button>
           <button onClick={() => handleEdit()}>Cancel</button>
         </td>
       )}
