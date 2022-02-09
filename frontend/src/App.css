@@ -36,7 +36,6 @@ td {
   text-align: center;
 }
 button {
-  border-radius: 4px;
   margin: 5px;
   border: black solid 2px;
   background-color: whitesmoke;
@@ -47,4 +46,12 @@ button:hover {
 }
 button:active {
   background-color: gray;
+}
+input {
+  border: none;
+  border-bottom: 2px solid gray;
+}
+input:focus {
+  outline: none;
+  border-bottom: solid 2px black;
 }
