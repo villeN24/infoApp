@@ -10,10 +10,10 @@ Käynnistä backend ajamalla rootissa node dist/app.js.
 
 Sovellus tarvitsee vielä roottiin .env tiedoston, jossa on tietokannan tarvittat tiedot formaatissa:
 
-DB_HOST = 
-DB_USER = 
-DB_PASSWORD = 
-DB_DB = 
+  - DB_HOST = "hostin nimi"
+  - DB_USER = "käyttäjätunnus"
+  - DB_PASSWORD = "salasana"
+  - DB_DB = "tietokannan nimi"
 
 Sovellukseen sopivan taulun luontilause.
 CREATE TABLE users (
