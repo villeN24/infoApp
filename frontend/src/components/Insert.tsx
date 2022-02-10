@@ -4,8 +4,8 @@ import { FC, useEffect, useState } from "react";
 import "../App.css";
 
 interface user {
-  fName: String;
-  lName: String;
+  fName: string;
+  lName: string;
   age: number;
 }
 interface insertProps {
@@ -13,8 +13,8 @@ interface insertProps {
 }
 
 const Insert: FC<insertProps> = ({ refreshList }) => {
-  const [firstName, setFirstName] = useState<String>("");
-  const [lastName, setLastName] = useState<String>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
   const [age, setAge] = useState<number>(0);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,6 +34,9 @@ const Insert: FC<insertProps> = ({ refreshList }) => {
       lName: lastName,
       age: age,
     };
+    setFirstName("");
+    setLastName("");
+    setAge(0);
     await axios.post(`http://localhost:8080/users`, {
       payload: dataPacket,
     });
@@ -46,15 +49,23 @@ const Insert: FC<insertProps> = ({ refreshList }) => {
         onChange={handleChange}
         type="text"
         id="fname"
+        value={firstName}
         placeholder="First name"
       />
       <input
         onChange={handleChange}
         type="text"
         id="lname"
+        value={lastName}
         placeholder="Last name"
       />
-      <input onChange={handleChange} type="number" id="age" placeholder="Age" />
+      <input
+        onChange={handleChange}
+        type="number"
+        id="age"
+        value={age}
+        placeholder="Age"
+      />
       <button onClick={() => insertInfo()}>Submit</button>
     </div>
   );
