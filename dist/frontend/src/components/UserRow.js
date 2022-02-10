@@ -32,7 +32,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
-const react_1 = __importStar(require("react"));
+const React = __importStar(require("react"));
+const react_1 = require("react");
 require("../App.css");
 const UserRow = ({ id, fName, lName, age, refreshList }) => {
     const [edit, setEdit] = (0, react_1.useState)(true);
@@ -72,21 +73,21 @@ const UserRow = ({ id, fName, lName, age, refreshList }) => {
         setEdit(!edit);
         refreshList();
     });
-    return (react_1.default.createElement("tr", null,
-        react_1.default.createElement("td", null,
+    return (React.createElement("tr", null,
+        React.createElement("td", null,
             id,
             " "),
-        edit ? (react_1.default.createElement("td", null, fName)) : (react_1.default.createElement("td", null,
-            react_1.default.createElement("input", { onChange: handleChange, type: "text", id: "fname", placeholder: "First name" }))),
-        edit ? (react_1.default.createElement("td", null, lName)) : (react_1.default.createElement("td", null,
-            react_1.default.createElement("input", { onChange: handleChange, type: "text", id: "lname", placeholder: "Last name" }))),
-        edit ? (react_1.default.createElement("td", null, age)) : (react_1.default.createElement("td", null,
-            react_1.default.createElement("input", { onChange: handleChange, type: "number", id: "age", placeholder: "Age" }))),
-        edit ? (react_1.default.createElement("td", null,
-            react_1.default.createElement("button", { className: "top", onClick: () => handleDelete() }, "Delete user"),
-            react_1.default.createElement("button", { onClick: () => handleEdit() }, "Edit user"))) : (react_1.default.createElement("td", null,
-            react_1.default.createElement("button", { className: "top", onClick: () => insertInfo() }, "Submit user"),
-            react_1.default.createElement("button", { onClick: () => handleEdit() }, "Cancel")))));
+        edit ? (React.createElement("td", null, fName)) : (React.createElement("td", null,
+            React.createElement("input", { onChange: handleChange, type: "text", id: "fname", placeholder: "First name" }))),
+        edit ? (React.createElement("td", null, lName)) : (React.createElement("td", null,
+            React.createElement("input", { onChange: handleChange, type: "text", id: "lname", placeholder: "Last name" }))),
+        edit ? (React.createElement("td", null, age)) : (React.createElement("td", null,
+            React.createElement("input", { onChange: handleChange, type: "number", id: "age", placeholder: "Age" }))),
+        edit ? (React.createElement("td", null,
+            React.createElement("button", { className: "top", onClick: () => handleDelete() }, "Delete user"),
+            React.createElement("button", { onClick: () => handleEdit() }, "Edit user"))) : (React.createElement("td", null,
+            React.createElement("button", { className: "top", onClick: () => insertInfo() }, "Submit user"),
+            React.createElement("button", { onClick: () => handleEdit() }, "Cancel")))));
 };
 exports.default = UserRow;
 //# sourceMappingURL=UserRow.js.map

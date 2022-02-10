@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { FC, useEffect, useState } from "react";
+import * as React from "react";
+import { FC, useState } from "react";
 import "../App.css";
 
 interface userProps {

@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as React from "react";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import "../App.css";
 
 interface user {
