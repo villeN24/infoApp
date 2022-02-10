@@ -20,7 +20,8 @@ app.use(express_1.default.json());
 app.use(`/${routeUsers}`, userRoute_1.default);
 app.use(express_1.default.static(path_1.default.join(__dirname, "frontend/build")));
 const server = app.listen(port, () => {
-    return console.log(`Listening at ${server.address().port}`);
+    console.log(`Listening at ${server.address()}`);
+    database_1.connectionFunctions.connect();
 });
 const shutdown = () => {
     console.log("Closing server.");

@@ -19,7 +19,8 @@ app.use(`/${routeUsers}`, router);
 app.use(express.static(path.join(__dirname, "frontend/build")));
 
 const server = app.listen(port, () => {
-  return console.log(`Listening at ${server.address().port}`);
+  console.log(`Listening at ${server.address()}`);
+  connectionFunctions.connect();
 });
 
 const shutdown = () => {
