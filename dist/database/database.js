@@ -7,10 +7,10 @@ exports.connectionFunctions = void 0;
 const mysql_1 = __importDefault(require("mysql"));
 /** An object to create a connection to database. */
 const pool = mysql_1.default.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DB,
+    host: process.env.host,
+    user: process.env.user,
+    password: process.env.host,
+    database: process.env.database,
 });
 exports.connectionFunctions = {
     connect: () => {
