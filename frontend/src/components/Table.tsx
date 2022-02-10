@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import axios from "axios";
-import Insert from "./Insert";
-import UserRow from "./UserRow";
+import { Insert } from "./Insert";
+import { UserRow } from "./UserRow";
 
 const topColor: string = "#36304a";
 const hlColor: string = "gray";

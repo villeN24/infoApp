@@ -62,5 +62,3 @@ export const Insert: FC<insertProps> = ({ refreshList }) => {
     </div>
   );
 };
-
-export default Insert;

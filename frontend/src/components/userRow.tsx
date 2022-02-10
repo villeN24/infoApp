@@ -118,5 +118,3 @@ export const UserRow: FC<userProps> = ({
     </tr>
   );
 };
-
-export default UserRow;
