@@ -51,6 +51,7 @@ router.get(`/`, async (req, res) => {
  */
 router.get(`/:id([0-9]+)`, async (req, res) => {
   const id = Number(req.params.id);
+  console.log(id);
   try {
     const foundLocation = await connectionFunctions.findById(id);
     if (foundLocation !== null) {

@@ -79,6 +79,7 @@ router.get(`/`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
  */
 router.get(`/:id([0-9]+)`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = Number(req.params.id);
+    console.log(id);
     try {
         const foundLocation = yield database_1.connectionFunctions.findById(id);
         if (foundLocation !== null) {
