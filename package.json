@@ -27,12 +27,14 @@
     "typescript": "^4.5.5"
   },
   "dependencies": {
+    "@types/json-schema": "^7.0.9",
     "@types/mysql": "^2.15.20",
     "axios": "^0.25.0",
     "cors": "^2.8.5",
     "cra-template-typescript": "^1.1.3",
     "dotenv": "^14.3.2",
     "express": "^4.17.2",
+    "jsonschema": "^1.4.0",
     "mysql": "^2.18.1"
   }
 }
