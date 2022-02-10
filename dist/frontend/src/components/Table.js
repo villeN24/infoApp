@@ -34,8 +34,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 require("../App.css");
 const axios_1 = __importDefault(require("axios"));
-const UserRow_1 = __importDefault(require("./UserRow"));
 const Insert_1 = __importDefault(require("./Insert"));
+const UserRow_1 = __importDefault(require("./UserRow"));
 const topColor = "#36304a";
 const hlColor = "gray";
 function Table() {
