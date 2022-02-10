@@ -23,7 +23,7 @@ const UserRow: FC<userProps> = ({ id, fName, lName, age, refreshList }) => {
 
   const handleDelete = async () => {
     console.log(`Delete user with ID: ${id}`);
-    await axios.delete(`http://localhost:8080/users/${id}`);
+    await axios.delete(`/users/${id}`);
     refreshList();
   };
   const handleEdit = async () => {
