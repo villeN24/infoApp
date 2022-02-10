@@ -4,6 +4,29 @@ const router: Router = Router();
 const unexpectedErr = `Serverside error occured.`;
 const badReqErr = `Invalid request.`;
 import { connectionFunctions } from "../database/database";
+import * as jsonschema from "jsonschema";
+const validator = new jsonschema.Validator();
+
+const schema: object = {
+  type: "object",
+  properties: {
+    fName: {
+      type: "string",
+      minLength: 1,
+      maxLength: 40,
+    },
+    lName: {q
+      type: "string",
+      minLength: 1,
+      maxLength: 60,
+    },
+    age: {
+      type: "integer",
+      exclusiveMinimum: 0,
+    },
+    required: ["fName", "lName", "age"],
+  },
+};
 
 router.use((req, res, next) => {
   console.log(`Logged at route`);
@@ -66,12 +89,25 @@ router.delete(`/:id([0-9]+)`, async (req, res) => {
 });
 router.post(`/`, async (req, res) => {
   try {
-    await connectionFunctions.save(
-      req.body.payload.fName,
-      req.body.payload.lName,
-      req.body.payload.age
-    );
-    res.status(201).send();
+    const validation = validator.validate(req.body.payload, schema);
+    if (validation.errors.length > 0) {
+      console.log("Failed at validation");
+      console.log(typeof req.body.payload.fName);
+      console.log(req.body.payload.fName);
+      console.log(typeof req.body.payload.lName);
+      console.log(req.body.payload.lName);
+      console.log(typeof req.body.payload.age);
+      console.log(req.body.payload.age);
+      console.log(validation.errors);
+      res.status(400).send(badReqErr);
+    } else {
+      await connectionFunctions.save(
+        req.body.payload.fName,
+        req.body.payload.lName,
+        req.body.payload.age
+      );
+      res.status(201).send();
+    }
   } catch (err) {
     res.status(500).send({
       msg: badReqErr,
