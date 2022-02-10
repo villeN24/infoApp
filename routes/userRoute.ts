@@ -15,7 +15,7 @@ const schema: object = {
       minLength: 1,
       maxLength: 40,
     },
-    lName: {q
+    lName: {
       type: "string",
       minLength: 1,
       maxLength: 60,
@@ -91,14 +91,6 @@ router.post(`/`, async (req, res) => {
   try {
     const validation = validator.validate(req.body.payload, schema);
     if (validation.errors.length > 0) {
-      console.log("Failed at validation");
-      console.log(typeof req.body.payload.fName);
-      console.log(req.body.payload.fName);
-      console.log(typeof req.body.payload.lName);
-      console.log(req.body.payload.lName);
-      console.log(typeof req.body.payload.age);
-      console.log(req.body.payload.age);
-      console.log(validation.errors);
       res.status(400).send(badReqErr);
     } else {
       await connectionFunctions.save(
@@ -119,13 +111,18 @@ router.patch(`/:id([0-9]+)`, async (req, res) => {
   try {
     const foundLocation = await connectionFunctions.findById(id);
     if (foundLocation != null) {
-      connectionFunctions.editEntry(
-        id,
-        req.body.payload.fName,
-        req.body.payload.lName,
-        req.body.payload.age
-      );
-      res.status(200).send();
+      const validation = validator.validate(req.body.payload, schema);
+      if (validation.errors.length > 0) {
+        res.status(400).send(badReqErr);
+      } else {
+        await connectionFunctions.editEntry(
+          id,
+          req.body.payload.fName,
+          req.body.payload.lName,
+          req.body.payload.age
+        );
+        res.status(200).send();
+      }
     } else {
       res.status(404).send({
         msg: "Cannot find resource with ID of " + id + ".",
@@ -133,7 +130,7 @@ router.patch(`/:id([0-9]+)`, async (req, res) => {
     }
   } catch (err) {
     res.status(500).send({
-      msg: badReqErr,
+      msg: unexpectedErr,
     });
   }
 });
