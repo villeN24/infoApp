@@ -6,27 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.connectionFunctions = void 0;
 const mysql_1 = __importDefault(require("mysql"));
 /** An object to create a connection to database. */
-const pool = mysql_1.default.createConnection({
+const pool = mysql_1.default.createPool({
     host: process.env.host,
     user: process.env.user,
     password: process.env.host,
     database: process.env.database,
+    connectionLimit: 10,
 });
 exports.connectionFunctions = {
-    connect: () => {
-        function funkkari(resolve, reject) {
-            console.log("connecting");
-            pool.connect((err) => {
-                if (err) {
-                    reject(err);
-                }
-                else {
-                    resolve("Connected.");
-                }
-            });
-        }
-        return new Promise(funkkari);
-    },
     close: (close) => {
         function funkkari(resolve, reject) {
             pool.end((err) => {
