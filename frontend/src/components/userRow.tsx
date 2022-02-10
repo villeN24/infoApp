@@ -16,7 +16,13 @@ interface user {
   age: number;
 }
 
-const UserRow: FC<userProps> = ({ id, fName, lName, age, refreshList }) => {
+export const UserRow: FC<userProps> = ({
+  id,
+  fName,
+  lName,
+  age,
+  refreshList,
+}) => {
   const [edit, setEdit] = useState<boolean>(true);
   const [firstName, setFirstName] = useState<String>("");
   const [lastName, setLastName] = useState<String>("");
