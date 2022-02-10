@@ -1,15 +1,26 @@
 import mysql from "mysql";
 
 /** An object to create a connection to database. */
-const pool = mysql.createPool({
+const pool = mysql.createConnection({
   host: process.env.host,
   user: process.env.user,
   password: process.env.host,
   database: process.env.database,
-  connectionLimit: 10,
 });
 
 export const connectionFunctions = {
+  connect: () => {
+    function funkkari(resolve, reject) {
+      pool.connect((err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve("Connected.");
+        }
+      });
+    }
+    return new Promise(funkkari);
+  },
   close: (close) => {
     function funkkari(resolve, reject) {
       pool.end((err) => {
