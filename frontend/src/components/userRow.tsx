@@ -28,6 +28,7 @@ const UserRow: FC<userProps> = ({ id, fName, lName, age, refreshList }) => {
   };
   const handleEdit = async () => {
     setEdit(!edit);
+    console.log(edit);
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.id === "fname") {
