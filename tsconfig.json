@@ -12,6 +12,5 @@
     "types": [],
     "skipLibCheck": true
   },
-  "exclude": ["node_modules", "frontend"],
   "lib": ["es2015"]
 }

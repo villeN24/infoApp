@@ -42,7 +42,7 @@ const UserRow = ({ id, fName, lName, age, refreshList }) => {
     const [varAge, setVarAge] = (0, react_1.useState)(0);
     const handleDelete = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log(`Delete user with ID: ${id}`);
-        yield axios_1.default.delete(`http://localhost:8080/users/${id}`);
+        yield axios_1.default.delete(`/users/${id}`);
         refreshList();
     });
     const handleEdit = () => __awaiter(void 0, void 0, void 0, function* () {

@@ -31,7 +31,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Insert = void 0;
 const axios_1 = __importDefault(require("axios"));
 const React = __importStar(require("react"));
 const react_1 = require("react");
@@ -62,6 +61,5 @@ const Insert = ({ refreshList }) => {
             React.createElement("input", { onChange: (e) => setAge(Number(e.target.value)), type: "number", id: "age", value: age, placeholder: "Age" }),
             React.createElement("button", { type: "submit" }, "Submit"))));
 };
-exports.Insert = Insert;
-exports.default = exports.Insert;
+exports.default = Insert;
 //# sourceMappingURL=Insert.js.map
