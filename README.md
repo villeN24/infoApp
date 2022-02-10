@@ -4,7 +4,7 @@ Sovellus toimii vain branchissa local.
 
 Ensin aja komento npm install rootissa, ja root/frontend kansioissa.
 
-Käynnistä frontend ajamalla komento kansiossa root/frontend/src. Frontend käynnistyy porttiin localhost:3000.
+Käynnistä frontend ajamalla komento npm run start kansiossa root/frontend/src. Frontend käynnistyy porttiin localhost:3000.
 
 Käynnistä backend ajamalla rootissa node dist/app.js.
 
