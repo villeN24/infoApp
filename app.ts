@@ -2,12 +2,11 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import "dotenv/config";
-
 const routeUsers = "users";
 import router, * as users from "./routes/userRoute";
 import { connectionFunctions } from "./database/database";
 
-const port = 8080;
+const port = process.env.PORT;
 const app = express();
 
 app.use(cors());
@@ -20,7 +19,7 @@ app.use(`/${routeUsers}`, router);
 app.use(express.static(path.join(__dirname, "frontend/build")));
 
 const server = app.listen(port, () => {
-  return console.log(`Express is listening at http://localhost:${port}`);
+  return console.log(`Listening at ${server.address().port}`);
 });
 
 const shutdown = () => {

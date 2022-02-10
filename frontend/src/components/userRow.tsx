@@ -47,7 +47,7 @@ const UserRow: FC<userProps> = ({ id, fName, lName, age, refreshList }) => {
       lName: lastName,
       age: varAge,
     };
-    let response = await axios.patch(`http://localhost:8080/users/${id}`, {
+    let response = await axios.patch(`/users/${id}`, {
       payload: dataPacket,
     });
     console.log(response);

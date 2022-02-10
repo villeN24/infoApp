@@ -54,7 +54,7 @@ function Table() {
   useEffect(() => {
     const fetchData = async () => {
       if (refresh !== helper) {
-        let response = await axios.get(`http://localhost:8080/users`);
+        let response = await axios.get(`/users`);
         setList(response.data);
         setHelper(refresh);
       }

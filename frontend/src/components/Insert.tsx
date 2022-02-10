@@ -27,7 +27,7 @@ const Insert: FC<insertProps> = ({ refreshList }) => {
     setFirstName("");
     setLastName("");
     setAge("");
-    await axios.post(`http://localhost:8080/users`, {
+    await axios.post(`/users`, {
       payload: dataPacket,
     });
     refreshList();
