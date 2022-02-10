@@ -12,7 +12,7 @@ interface insertProps {
   refreshList: Function;
 }
 
-export const Insert: FC<insertProps> = ({ refreshList }) => {
+const Insert: FC<insertProps> = ({ refreshList }) => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [age, setAge] = useState<number | string>("");
@@ -62,3 +62,5 @@ export const Insert: FC<insertProps> = ({ refreshList }) => {
     </div>
   );
 };
+
+export default Insert;
