@@ -6,7 +6,7 @@ import "../App.css";
 interface user {
   fName: string;
   lName: string;
-  age: number;
+  age: number | string;
 }
 interface insertProps {
   refreshList: Function;
@@ -15,20 +15,10 @@ interface insertProps {
 const Insert: FC<insertProps> = ({ refreshList }) => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
-  const [age, setAge] = useState<number>(0);
+  const [age, setAge] = useState<number | string>("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.id === "fname") {
-      setFirstName(e.target.value);
-    }
-    if (e.target.id === "lname") {
-      setLastName(e.target.value);
-    }
-    if (e.target.id === "age") {
-      setAge(Number(e.target.value));
-    }
-  };
-  const insertInfo = async () => {
+  const insertInfo = async (event: any) => {
+    event.preventDefault();
     let dataPacket: user = {
       fName: firstName,
       lName: lastName,
@@ -36,7 +26,7 @@ const Insert: FC<insertProps> = ({ refreshList }) => {
     };
     setFirstName("");
     setLastName("");
-    setAge(0);
+    setAge("");
     await axios.post(`http://localhost:8080/users`, {
       payload: dataPacket,
     });
@@ -45,28 +35,30 @@ const Insert: FC<insertProps> = ({ refreshList }) => {
 
   return (
     <div id="insertContainer">
-      <input
-        onChange={handleChange}
-        type="text"
-        id="fname"
-        value={firstName}
-        placeholder="First name"
-      />
-      <input
-        onChange={handleChange}
-        type="text"
-        id="lname"
-        value={lastName}
-        placeholder="Last name"
-      />
-      <input
-        onChange={handleChange}
-        type="number"
-        id="age"
-        value={age}
-        placeholder="Age"
-      />
-      <button onClick={() => insertInfo()}>Submit</button>
+      <form onSubmit={insertInfo}>
+        <input
+          onChange={(e) => setFirstName(e.target.value)}
+          type="text"
+          id="fname"
+          value={firstName}
+          placeholder="First name"
+        />
+        <input
+          onChange={(e) => setLastName(e.target.value)}
+          type="text"
+          id="lname"
+          value={lastName}
+          placeholder="Last name"
+        />
+        <input
+          onChange={(e) => setAge(Number(e.target.value))}
+          type="number"
+          id="age"
+          value={age}
+          placeholder="Age"
+        />
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 };
