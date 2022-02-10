@@ -2,9 +2,11 @@
 
 Sovellus toimii vain branchissa local.
 
-Ensin navigoi root/frontend/src/ kansioon, ja siellä aja komento npm install, minkä jälkeen npm run start. Nyt frontend käynnistyy localhost:3000.
+Ensin aja komento npm install rootissa, ja root/frontend kansioissa.
 
-Sitten navigoi root/ kansioon, jossa npm install, tsc ja node dist/app.js. Nyt backend käynnistyy localhost/8080.
+Käynnistä frontend ajamalla komento kansiossa root/frontend/src. Frontend käynnistyy porttiin localhost:3000.
+
+Käynnistä backend ajamalla rootissa node dist/app.js.
 
 Sovellus tarvitsee vielä roottiin .env tiedoston, jossa on tietokannan tarvittat tiedot formaatissa:
 
