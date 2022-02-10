@@ -22,11 +22,12 @@ export const connectionFunctions = {
     }
     return new Promise(funkkari);
   },
-  close: () => {
+  close: (close) => {
     function funkkari(resolve, reject) {
       pool.end((err) => {
         if (err) {
           reject(err);
+          close();
         } else {
           resolve("Query completed, closing connection.");
         }
